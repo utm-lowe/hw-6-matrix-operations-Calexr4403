@@ -1,0 +1,215 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: matrixTest 1
+      id: matrixtest-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: matrixTest 1
+        setup-command: make matrixTest
+        command: "./matrixTest"
+        input: "1 2 3 \n4 5 6 \n7 8 9\n10 11 12\n13 14 15\n16 17 18"
+        expected-output: "Enter a 3x3 matrix (A)\nEnter a 3x3 matrix (B)\nMatrix A\n
+          \        1          2          3 \n         4          5          6 \n         7
+          \         8          9 \n\nMatrix B\n        10         11         12 \n
+          \       13         14         15 \n        16         17         18 \n\nA
+          + B\n        11         13         15 \n        17         19         21
+          \n        23         25         27 \n\nA - B\n        -9         -9         -9
+          \n        -9         -9         -9 \n        -9         -9         -9 \n\nA
+          * B\n        84         90         96 \n       201        216        231
+          \n       318        342        366 \n\n2*A\n         2          4          6
+          \n         8         10         12 \n        14         16         18 \n\nA*2\n
+          \        2          4          6 \n         8         10         12 \n        14
+          \        16         18 \n"
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: matrixTest 2
+      id: matrixtest-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: matrixTest 2
+        setup-command: make matrixTest
+        command: "./matrixTest"
+        input: "1 1 1\n2 2 2\n3 3 3.2\n5 4 3 \n1 2.5 1\n3 5 1"
+        expected-output: "Enter a 3x3 matrix (A)\nEnter a 3x3 matrix (B)\nMatrix A\n
+          \        1          1          1 \n         2          2          2 \n         3
+          \         3        3.2 \n\nMatrix B\n         5          4          3 \n
+          \        1        2.5          1 \n         3          5          1 \n\nA
+          + B\n         6          5          4 \n         3        4.5          3
+          \n         6          8        4.2 \n\nA - B\n        -4         -3         -2
+          \n         1       -0.5          1 \n         0         -2        2.2 \n\nA
+          * B\n         9       11.5          5 \n        18         23         10
+          \n      27.6       35.5       15.2 \n\n2*A\n         2          2          2
+          \n         4          4          4 \n         6          6        6.4 \n\nA*2\n
+          \        2          2          2 \n         4          4          4 \n         6
+          \         6        6.4 \n"
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: trajectory 1
+      id: trajectory-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: trajectory 1
+        setup-command: make trajectory
+        command: "./trajectory"
+        input: |-
+          0 0
+          10 20
+          10
+        expected-output: "Position is in meters and velocity is in meters per second.\nInitial
+          x position: Initial y position: Inital x velocity: Inital y velocity: Simulation
+          Duration (seconds):                    *****                                                                            \n
+          \               ***     ***                                                                         \n
+          \             **           *                                                                        \n
+          \            *              **                                                                      \n
+          \           *                 *                                                                     \n
+          \          *                   *                                                                    \n
+          \         *                     *                                                                   \n
+          \        *                       *                                                                  \n
+          \       *                                                                                           \n
+          \                                 *                                                                 \n
+          \      *                           *                                                                \n
+          \     *                             *                                                               \n
+          \    *                                                                                              \n
+          \                                    *                                                              \n
+          \   *                                 *                                                             \n
+          \                                                                                                   \n
+          \  *                                   *                                                            \n
+          \                                                                                                   \n
+          \ *                                     *                                                           \n
+          *                                                                                                  \n
+          \                                        *                                                          \n
+          \                                         *                                                         "
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: trajectory 2
+      id: trajectory-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: trajectory 2
+        setup-command: make trajectory
+        command: "./trajectory"
+        input: |-
+          0 25
+          5 10
+          10
+        expected-output: "Position is in meters and velocity is in meters per second.\nInitial
+          x position: Initial y position: Inital x velocity: Inital y velocity: Simulation
+          Duration (seconds):     ****                                                                                            \n
+          \ **   **                                                                                           \n
+          \ *     *                                                                                           \n
+          *       *                                                                                          \n**
+          \       *                                                                                         \n
+          \         *                                                                                         \n
+          \          *                                                                                        \n
+          \          *                                                                                        \n
+          \                                                                                                   \n
+          \           *                                                                                       \n
+          \           *                                                                                       \n
+          \            *                                                                                      \n
+          \                                                                                                   \n
+          \            *                                                                                      \n
+          \                                                                                                   \n
+          \             *                                                                                     \n
+          \             *                                                                                     \n
+          \                                                                                                   \n
+          \              *                                                                                    \n
+          \                                                                                                   \n
+          \              *                                                                                    \n
+          \                                                                                                   \n
+          \               *                                                                                   \n
+          \                                                                                                   \n
+          \               *                                                                                   \n
+          \                                                                                                   \n
+          \                                                                                                   \n
+          \                *                                                                                  \n
+          \                                                                                                   \n
+          \                *                                                                                  \n
+          \                 *                                                                                 "
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: affine 1
+      id: affine-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: affine 1
+        setup-command: make affine
+        command: "./affine"
+        input: |-
+          T 2 2
+          D
+          1 1
+          2 3
+        expected-output: "(T)ranslate, (R)otate, (S)cale, or (D)one? Enter the x and
+          y translation: (T)ranslate, (R)otate, (S)cale, or (D)one? Transformation
+          Matrix: \n         1          0          2 \n         0          1          2
+          \n         0          0          1 \n\n\nEnter x and y: Transformed Point:
+          (3, 3)\nEnter x and y: Transformed Point: (4, 5)\nEnter x and y: "
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: affine 2
+      id: affine-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: affine 2
+        setup-command: make affine
+        command: "./affine"
+        input: |-
+          Q
+          D
+        expected-output: "(T)ranslate, (R)otate, (S)cale, or (D)one? Invalid choice.
+          Please try again.\n(T)ranslate, (R)otate, (S)cale, or (D)one? Transformation
+          Matrix: \n         1          0          0 \n         0          1          0
+          \n         0          0          1 \n\n\nEnter x and y: "
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: affine 3
+      id: affine-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: affine 3
+        setup-command: make affine
+        command: "./affine"
+        input: "T 2 3\nR 45\nS 2 1\nD\n1 1 \n2 3 \n-1 1\n0 12"
+        expected-output: "(T)ranslate, (R)otate, (S)cale, or (D)one? Enter the x and
+          y translation: (T)ranslate, (R)otate, (S)cale, or (D)one? Enter the angle
+          of rotation (degrees): (T)ranslate, (R)otate, (S)cale, or (D)one? Enter
+          the x and y scaling factors: (T)ranslate, (R)otate, (S)cale, or (D)one?
+          Transformation Matrix: \n   1.41421   -1.41421   -1.41421 \n  0.707107   0.707107
+          \   3.53553 \n         0          0          1 \n\n\nEnter x and y: Transformed
+          Point: (-1.41421, 4.94975)\nEnter x and y: Transformed Point: (-2.82843,
+          7.07107)\nEnter x and y: Transformed Point: (-4.24264, 3.53553)\nEnter x
+          and y: Transformed Point: (-18.3848, 12.0208)\nEnter x and y: "
+        comparison-method: exact
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        MATRIXTEST-1_RESULTS: "${{steps.matrixtest-1.outputs.result}}"
+        MATRIXTEST-2_RESULTS: "${{steps.matrixtest-2.outputs.result}}"
+        TRAJECTORY-1_RESULTS: "${{steps.trajectory-1.outputs.result}}"
+        TRAJECTORY-2_RESULTS: "${{steps.trajectory-2.outputs.result}}"
+        AFFINE-1_RESULTS: "${{steps.affine-1.outputs.result}}"
+        AFFINE-2_RESULTS: "${{steps.affine-2.outputs.result}}"
+        AFFINE-3_RESULTS: "${{steps.affine-3.outputs.result}}"
+      with:
+        runners: matrixtest-1,matrixtest-2,trajectory-1,trajectory-2,affine-1,affine-2,affine-3
