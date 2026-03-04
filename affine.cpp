@@ -225,7 +225,6 @@ Matrix getPoint()
     double x, y;
     cout << "Enter x and y: ";
     cin >> x >> y;
-    cout << "Transformed Point: (" << x << ", " << y << ")" << endl;
     Matrix point(3,1);
     point.at(0,0) = x;
     point.at(1,0) = y;
