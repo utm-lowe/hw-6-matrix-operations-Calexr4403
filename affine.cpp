@@ -185,7 +185,7 @@ Matrix transformMenu()
         // YOUR CODE HERE
         switch(choice) {
             case 'T':
-                cout << "Enter x and y translation:";
+                cout << "Enter x and y translation: ";
                 cin >> x >> y;
                 result = translate(x, y) * result;
                 break;
