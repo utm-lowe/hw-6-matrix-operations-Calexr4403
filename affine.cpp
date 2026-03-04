@@ -185,17 +185,17 @@ Matrix transformMenu()
         // YOUR CODE HERE
         switch(choice) {
             case 'T':
-                cout << "Translation (tx ty): ";
+                cout << "Enter x and y translation:";
                 cin >> x >> y;
                 result = translate(x, y) * result;
                 break;
             case 'R':
-                cout << "Rotation (angle in degrees): ";
+                cout << "Enter the angle of rotation (degrees): ";
                 cin >> angle;
                 result = transRotate(angle) * result;
                 break;
             case 'S':
-                cout << "Scaling (sx sy): ";
+                cout << "Enter the x and y scaling factors: ";
                 cin >> x >> y;
                 result = transScale(x, y) * result;
                 break;
@@ -203,7 +203,7 @@ Matrix transformMenu()
                 // Done, do nothing
                 break;
             default:
-                cout << "Invalid choice. Please enter T, R, S, or D." << endl;
+                cout << "Invalid choice. Please try again." << endl;
         }
 
     }while(choice != 'D');
