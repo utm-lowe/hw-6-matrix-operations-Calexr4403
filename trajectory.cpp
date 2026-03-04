@@ -89,6 +89,13 @@ int main() {
         //    height to the y coordinate + 1.
         // YOUR CODE HERE
 
+        position = position + velocity * deltaTime; // Update position based on velocity
+        velocity = velocity + gravity * deltaTime; // Update velocity based on gravity
+        if (position.at(1, 0) > gridHeight) {
+            gridHeight = static_cast<int>(position.at(1, 0)) + 1; // Update grid height if needed
+        }
+        
+
         // We will be talking about the vector object a little later. If you 
         // want to read ahead though, I encourage that!
         // Store the current position
@@ -97,6 +104,8 @@ int main() {
 
     // Plot the trajectory
     plotTrajectory(trajectory, gridWidth, gridHeight);
+
+
 
     return 0;
 }

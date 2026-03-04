@@ -1,11 +1,11 @@
 /**
  * @file matrix.h
- * @author your name (you@domain.com)
+ * @author Alex Ritter
  * @brief Class definition and operator prototypes of the Matrix class. 
  * @version 0.1
- * @date 2024-10-08
+ * @date 2026-2-25
  * 
- * @copyright Copyright (c) 2024
+ * @copyright Copyright (c) 2026
  * 
  */
 
@@ -118,7 +118,8 @@ Matrix operator*(const Matrix& m1, const Matrix& m2);
  */
 Matrix operator*(double scalar, const Matrix& m);
 
-/* @brief Overloaded operator for the multiplication of a matrix by a scalar.
+/**
+ * @brief Overloaded operator for the multiplication of a matrix by a scalar.
  * @param m The matrix.
  * @param scalar The scalar value.
  * @return Matrix The product of the matrix and the scalar.
