@@ -185,7 +185,7 @@ Matrix transformMenu()
         // YOUR CODE HERE
         switch(choice) {
             case 'T':
-                cout << "Enter x and y translation: ";
+                cout << "Enter the x and y translation: ";
                 cin >> x >> y;
                 result = translate(x, y) * result;
                 break;
@@ -203,7 +203,7 @@ Matrix transformMenu()
                 // Done, do nothing
                 break;
             default:
-                cout << "Invalid choice. Please try again." << endl;
+                cout << "Invalid choice. Please try again." << endl << endl;
         }
 
     }while(choice != 'D');
