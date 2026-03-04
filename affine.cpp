@@ -203,7 +203,7 @@ Matrix transformMenu()
                 // Done, do nothing
                 break;
             default:
-                cout << "Invalid choice. Please try again." << endl << endl;
+                cout << "Invalid choice. Please try again." << endl;
         }
 
     }while(choice != 'D');
@@ -223,11 +223,12 @@ Matrix getPoint()
     // Return your matrix at the end of the function.
     // YOUR CODE HERE
     double x, y;
-    cout << "Enter a point (x y): ";
+    cout << "Enter x and y: ";
     cin >> x >> y;
+    cout << "Transformed Point: (" << x << ", " << y << ")" << endl;
     Matrix point(3,1);
     point.at(0,0) = x;
     point.at(1,0) = y;
-    point.at(2,0) = 1.0;
+    point.at(2,0) = 1.0; // Set the homogeneous coordinate to 1
     return point;
 }
